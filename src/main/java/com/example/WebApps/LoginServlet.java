@@ -3,10 +3,7 @@ package com.example.WebApps;
 import com.example.WebApps.services.DBProps;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,6 +30,8 @@ public class LoginServlet extends HttpServlet {
 
             if (resultSet.next()) {
                 if (resultSet.getString("password").equals(req.getParameter("password"))) {
+                    Cookie cookie = new Cookie("user", req.getParameter("login"));
+                    resp.addCookie(cookie);
                     HttpSession session = req.getSession();
                     session.setAttribute("URL", req.getRequestURL());
                     writer.println("User: " + resultSet.getString("login") + "<br>");
