@@ -45,6 +45,7 @@ public class LoginServlet extends HttpServlet {
                     writer.flush();
                     writer.close();
                 }
+            } else {
                 writer.println("Error!");
                 writer.flush();
                 writer.close();
