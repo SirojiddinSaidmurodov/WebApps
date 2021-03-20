@@ -1,6 +1,7 @@
 package com.example.WebApps;
 
 import com.example.WebApps.services.DBProps;
+import com.example.WebApps.services.UserServer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 
 @WebServlet(name = "Login", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -41,16 +41,8 @@ public class LoginServlet extends HttpServlet {
                     resp.addCookie(cookie);
                     HttpSession session = req.getSession();
                     session.setAttribute("URL", req.getRequestURL());
-                    session.setAttribute("user", req.getParameter("login"));
-                    writer.println("User: " + resultSet.getString("login") + "<br>");
-                    writer.println("Creation time: " + new Date(session.getCreationTime()) + "<br>");
-                    writer.println("Last access time: " + new Date(session.getLastAccessedTime()) + "<br>");
-                    writer.println("Session id: " + session.getId() + "<br>");
-                    writer.println("Your url: " + req.getRequestURL() + "<br>");
-                    session.setMaxInactiveInterval(60 * 60);
-
-                    writer.flush();
-                    writer.close();
+                    session.setAttribute("user", new UserServer().getUser(req.getParameter("login")));
+                    resp.sendRedirect("photos.jsp");
                 }
             } else {
                 writer.println("Error!");

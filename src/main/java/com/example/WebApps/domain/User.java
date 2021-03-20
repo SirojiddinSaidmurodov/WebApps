@@ -6,19 +6,17 @@ public class User implements Serializable {
     private long id;
     private String login;
     private String password;
+    private String session;
 
-    public User(long id, String login, String password) {
+    public User(long id, String login, String session) {
         this.id = id;
         this.login = login;
-        this.password = password;
+        this.session = session;
     }
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
-    }
-
-    public User() {
     }
 
     public long getId() {
@@ -61,5 +59,13 @@ public class User implements Serializable {
         int result = getLogin().hashCode();
         result = 31 * result + getPassword().hashCode();
         return result;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
     }
 }
