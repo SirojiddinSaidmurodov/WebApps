@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Login</h1>
-<form action="login" method="get">
+<form action="login" method="post">
     <p>
         <label for="login">Login:</label>
         <input id="login" name="login" type="text">

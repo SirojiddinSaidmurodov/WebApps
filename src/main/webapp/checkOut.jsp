@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Arrays" %><%--
   Created by IntelliJ IDEA.
   User: Sirojiddin
   Date: 19.03.2021
@@ -13,18 +13,17 @@
 <body>
 <%
     Cookie[] cookies = request.getCookies();
+    Arrays.stream(cookies).forEach(cookie -> System.out.println(cookie.getName() + "  " + cookie.getValue()));
     String userName = null;
     if (session.getAttribute("user") == null) {
         response.sendRedirect("login.jsp");
     }
 
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("user")) {
-                userName = cookie.getValue();
-                session.setAttribute("user", userName);
-                break;
-            }
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals("user")) {
+            userName = cookie.getValue();
+            session.setAttribute("user", userName);
+            break;
         }
     }
 %>

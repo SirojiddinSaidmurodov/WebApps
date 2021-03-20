@@ -15,6 +15,12 @@
     <li>
         <a href="form.jsp">Form example</a>
     </li>
+    <li>
+        <a href="login">Login page</a>
+    </li>
+    <li>
+        <a href="checkOut.jsp">CheckOut</a>
+    </li>
 </ul>
 </body>
 </html>
