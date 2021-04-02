@@ -32,7 +32,6 @@ public class PhotoServlet extends HttpServlet {
             outputStream.write(buffer);
         }
         photo.close();
-        photo.close();
     }
 
     @Override
